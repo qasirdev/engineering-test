@@ -50,7 +50,7 @@ export class UserController {
   @ApiBadRequestResponse()
   @UseInterceptors(new FlakeyApiInterceptor(0.3))
   @Post()
-  async create(@Body() payload): Promise<UserResponseDto> {
+  async create(@Body() payload: {name: string, email: string}): Promise<UserResponseDto> {
     const user = await this.userService.newUser({
       id: uuid(),
       name: payload.name,
